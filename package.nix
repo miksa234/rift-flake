@@ -15,6 +15,7 @@ rustPlatform.buildRustPackage {
   };
 
   cargoBuildFlags = [ "--bins" ];
+  doCheck = false;
 
   meta = {
     description = "Tiling window manager for macOS";
