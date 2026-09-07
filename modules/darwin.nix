@@ -8,7 +8,7 @@
 let
   cfg = config.services.rift;
   toml = pkgs.formats.toml { };
-  generatedConfig = toml.generate "rift-config.toml" cfg.settings;
+  generatedConfig = toml.generate "rift-config.toml" cfg.config;
   configFile = if cfg.configFile != null then cfg.configFile else generatedConfig;
 in
 {
@@ -22,10 +22,10 @@ in
       description = "Rift package.";
     };
 
-    settings = lib.mkOption {
+    config = lib.mkOption {
       inherit (toml) type;
       default = { };
-      description = "Settings converted to TOML.";
+      description = "Config converted to TOML.";
     };
 
     configFile = lib.mkOption {
@@ -44,8 +44,8 @@ in
   config = lib.mkIf cfg.enable {
     assertions = [
       {
-        assertion = cfg.configFile == null || cfg.settings == { };
-        message = "services.rift.configFile and services.rift.settings are mutually exclusive";
+        assertion = cfg.configFile == null || cfg.config == { };
+        message = "services.rift.configFile and services.rift.config are mutually exclusive";
       }
     ];
 
