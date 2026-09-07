@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     rift-src = {
-      url = "github:acsandmann/rift";
+      url = "github:acsandmann/rift/v0.5.6";
       flake = false;
     };
   };
@@ -32,6 +32,12 @@
           default = rift;
         }
       );
+
+      checks = forAllSystems (system: {
+        inherit (self.packages.${system}) rift;
+      });
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
 
       overlays.default = final: _prev: {
         rift = final.callPackage ./package.nix { inherit rift-src; };

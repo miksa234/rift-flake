@@ -19,15 +19,16 @@
     "rift-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1788729501,
-        "narHash": "sha256-8IKYPOGWcHRBqIvn3x1C103630+aV8MB09XJNVdV8q8=",
+        "lastModified": 1788726235,
+        "narHash": "sha256-t78pUvFkQoJBqtKBfndUsaXgz7e3hsB0wBYWnHEIzOs=",
         "owner": "acsandmann",
         "repo": "rift",
-        "rev": "9d6913cb79dc812f1f7f9fd2f88c20e0bb419b09",
+        "rev": "a3e6bfb76938210ff1c22964184832c4dbf3fc93",
         "type": "github"
       },
       "original": {
         "owner": "acsandmann",
+        "ref": "v0.5.6",
         "repo": "rift",
         "type": "github"
       }

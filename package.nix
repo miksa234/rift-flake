@@ -6,10 +6,13 @@
 
 rustPlatform.buildRustPackage {
   pname = "rift";
-  version = "0-unstable-${rift-src.lastModifiedDate or "unknown"}";
+  version = "0.5.6";
 
   src = rift-src;
-  cargoHash = "sha256-wxymypJjczFqI9oivnVX/TOnR1KuupsaryQIQQVN7Gs=";
+  cargoLock = {
+    lockFile = "${rift-src}/Cargo.lock";
+    allowBuiltinFetchGit = true;
+  };
 
   cargoBuildFlags = [ "--bins" ];
 

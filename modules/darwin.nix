@@ -9,7 +9,7 @@ let
   cfg = config.services.rift;
   toml = pkgs.formats.toml { };
   generatedConfig = toml.generate "rift-config.toml" cfg.settings;
-  effectiveConfig = if cfg.configFile != null then cfg.configFile else generatedConfig;
+  configFile = if cfg.configFile != null then cfg.configFile else generatedConfig;
 in
 {
   options.services.rift = {
@@ -19,30 +19,26 @@ in
       type = lib.types.package;
       default = self.packages.${pkgs.stdenv.hostPlatform.system}.rift;
       defaultText = lib.literalExpression "inputs.rift.packages.${pkgs.system}.rift";
+      description = "Rift package to install and run.";
     };
 
     settings = lib.mkOption {
       inherit (toml) type;
       default = { };
+      description = "Rift configuration serialized to TOML.";
     };
 
     configFile = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       default = null;
-      example = lib.literalExpression "./rift.toml";
+      description = "Existing Rift TOML configuration file.";
     };
 
-    extraArgs = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      example = [ "--restore" ];
-    };
-
-    environment = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
+    serviceConfig = lib.mkOption {
+      type = lib.types.attrsOf lib.types.anything;
       default = { };
+      description = "Values merged into the Rift launchd service configuration.";
     };
-
   };
 
   config = lib.mkIf cfg.enable {
@@ -59,17 +55,11 @@ in
       ProgramArguments = [
         (lib.getExe cfg.package)
         "--config"
-        (toString effectiveConfig)
-      ]
-      ++ cfg.extraArgs;
+        (toString configFile)
+      ];
       RunAtLoad = true;
-      KeepAlive = {
-        SuccessfulExit = false;
-      };
-      ProcessType = "Interactive";
-      EnvironmentVariables = cfg.environment;
-      StandardOutPath = "/tmp/rift.log";
-      StandardErrorPath = "/tmp/rift.error.log";
-    };
+      KeepAlive.SuccessfulExit = false;
+    }
+    // cfg.serviceConfig;
   };
 }
