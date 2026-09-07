@@ -3,8 +3,6 @@
 Nix package and nix-darwin module for
 [Rift](https://github.com/acsandmann/rift), pinned to `v0.5.6`.
 
-The package targets Apple Silicon (`aarch64-darwin`).
-
 ## Usage
 
 ```nix
@@ -55,6 +53,3 @@ services.rift.serviceConfig = {
 Overriding `ProgramArguments` also makes the caller responsible for passing the
 Rift executable and configuration path. The module does not invoke a shell or
 load shell environment files.
-
-Do not also run `rift service install`; that would create a second launchd
-service. Rift requires macOS Accessibility permission.

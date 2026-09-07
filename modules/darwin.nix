@@ -19,25 +19,25 @@ in
       type = lib.types.package;
       default = self.packages.${pkgs.stdenv.hostPlatform.system}.rift;
       defaultText = lib.literalExpression "inputs.rift.packages.${pkgs.system}.rift";
-      description = "Rift package to install and run.";
+      description = "Rift package.";
     };
 
     settings = lib.mkOption {
       inherit (toml) type;
       default = { };
-      description = "Rift configuration serialized to TOML.";
+      description = "Settings converted to TOML.";
     };
 
     configFile = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       default = null;
-      description = "Existing Rift TOML configuration file.";
+      description = "Existing TOML config file.";
     };
 
     serviceConfig = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
       default = { };
-      description = "Values merged into the Rift launchd service configuration.";
+      description = "Launchd service configuration.";
     };
   };
 
