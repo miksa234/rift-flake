@@ -39,6 +39,12 @@ in
       default = { };
       description = "Launchd service configuration.";
     };
+
+    launchPrefix = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "Arguments placed before Rift's generated launch arguments.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -52,7 +58,7 @@ in
     environment.systemPackages = [ cfg.package ];
 
     launchd.user.agents.rift.serviceConfig = {
-      ProgramArguments = [
+      ProgramArguments = cfg.launchPrefix ++ [
         (lib.getExe cfg.package)
         "--config"
         (toString configFile)
