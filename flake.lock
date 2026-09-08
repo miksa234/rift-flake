@@ -33,10 +33,27 @@
         "type": "github"
       }
     },
+    "rift-src-unstable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788816001,
+        "narHash": "sha256-YiT57sJ6SA3kaoKGtQC3at58lTq9G8LHkUbs71EqaYo=",
+        "owner": "acsandmann",
+        "repo": "rift",
+        "rev": "83830a72fde07879fa5f8ce2c1703c8608122a4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "acsandmann",
+        "repo": "rift",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "rift-src": "rift-src"
+        "rift-src": "rift-src",
+        "rift-src-unstable": "rift-src-unstable"
       }
     }
   },

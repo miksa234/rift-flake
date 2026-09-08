@@ -1,13 +1,16 @@
 # rift-flake
 
 Nix package and nix-darwin module for
-[Rift](https://github.com/acsandmann/rift), pinned to `v0.5.6`.
+[Rift](https://github.com/acsandmann/rift).
+
+The default package follows the latest stable Rift release (currently v0.5.6).
+Also available is `riftUnstable` package follows the upstream default branch.
 
 ## Usage
 
 ```nix
 {
-  inputs.rift.url = "github:your-name/rift-flake";
+  inputs.rift.url = "github:miksa234/rift-flake";
   inputs.rift.inputs.nixpkgs.follows = "nixpkgs";
 }
 ```
@@ -18,7 +21,7 @@ Nix package and nix-darwin module for
 
   services.rift = {
     enable = true;
-    settings = {
+    config = {
       settings.layout.mode = "scrolling";
       virtual_workspaces.enabled = true;
       keys."Alt + H".move_focus = "left";
@@ -27,7 +30,7 @@ Nix package and nix-darwin module for
 }
 ```
 
-`settings` is serialized directly to TOML. Alternatively, use an existing file:
+`config` is serialized directly to TOML. Alternatively, use an existing file:
 
 ```nix
 services.rift = {
@@ -36,7 +39,13 @@ services.rift = {
 };
 ```
 
-`settings` and `configFile` are mutually exclusive.
+`config` and `configFile` are mutually exclusive.
+
+The default package is the stable release. Newest upstream unstable is available through:
+
+```nix
+services.rift.package = inputs.rift.packages.${pkgs.system}.riftUnstable;
+```
 
 The module starts Rift as a user launchd agent. `serviceConfig` is merged over
 the defaults and provides direct access to launchd, including
@@ -50,6 +59,19 @@ services.rift.serviceConfig = {
 };
 ```
 
-Overriding `ProgramArguments` also makes the caller responsible for passing the
-Rift executable and configuration path. The module does not invoke a shell or
-load shell environment files.
+The module does not invoke a shell or load shell environment files by default.
+For a generic launcher or environment wrapper, prepend arguments with
+`launchPrefix`. The module still appends the Rift executable and the generated
+or supplied configuration path:
+
+```nix
+services.rift.launchPrefix = [
+  (lib.getExe pkgs.zsh)
+  "-c"
+  ''source "$HOME/.zshenv"; exec "$@"''
+  "--"
+];
+```
+
+The prefix must execute the remaining arguments. `launchPrefix` is optional and
+does not change the default launch behavior.

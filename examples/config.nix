@@ -4,7 +4,7 @@
 
   services.rift = {
     enable = true;
-    settings = {
+    config = {
       settings.layout = {
         mode = "scrolling";
         scrolling.focus_navigation_style = "niri";

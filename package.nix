@@ -2,11 +2,12 @@
   lib,
   rustPlatform,
   rift-src,
+  version,
 }:
 
 rustPlatform.buildRustPackage {
   pname = "rift";
-  version = "0.5.6";
+  inherit version;
 
   src = rift-src;
   cargoLock = {
