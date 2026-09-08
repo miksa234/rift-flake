@@ -40,11 +40,12 @@ services.rift = {
 ```
 
 `config` and `configFile` are mutually exclusive.
+If neither is provided, the module uses Rift's upstream default configuration.
 
 The default package is the stable release. Newest upstream unstable is available through:
 
 ```nix
-services.rift.package = inputs.rift.packages.${pkgs.system}.riftUnstable;
+services.rift.package = inputs.rift.packages.${pkgs.stdenv.hostPlatform.system}.riftUnstable;
 ```
 
 The module starts Rift as a user launchd agent. `serviceConfig` is merged over

@@ -18,6 +18,10 @@ rustPlatform.buildRustPackage {
   cargoBuildFlags = [ "--bins" ];
   doCheck = false;
 
+  postInstall = ''
+    install -Dm644 rift.default.toml $out/share/rift/rift.default.toml
+  '';
+
   meta = {
     description = "Tiling window manager for macOS";
     homepage = "https://github.com/acsandmann/rift";

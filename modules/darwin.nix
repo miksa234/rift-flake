@@ -9,7 +9,13 @@ let
   cfg = config.services.rift;
   toml = pkgs.formats.toml { };
   generatedConfig = toml.generate "rift-config.toml" cfg.config;
-  configFile = if cfg.configFile != null then cfg.configFile else generatedConfig;
+  configFile =
+    if cfg.configFile != null then
+      cfg.configFile
+    else if cfg.config != { } then
+      generatedConfig
+    else
+      "${cfg.package}/share/rift/rift.default.toml";
 in
 {
   options.services.rift = {
