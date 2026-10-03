@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     rift-src = {
-      url = "github:acsandmann/rift/v0.5.9";
+      url = "github:acsandmann/rift/v0.6.4";
       flake = false;
     };
 
@@ -33,7 +33,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         rift = pkgs.callPackage ./package.nix {
           inherit rift-src;
-          version = "0.5.9";
+          version = "0.6.4";
         };
         riftUnstable = pkgs.callPackage ./package.nix {
           rift-src = rift-src-unstable;
@@ -55,7 +55,7 @@
       overlays.default = final: _prev: {
         rift = final.callPackage ./package.nix {
           inherit rift-src;
-          version = "0.5.9";
+          version = "0.6.4";
         };
         riftUnstable = final.callPackage ./package.nix {
           rift-src = rift-src-unstable;

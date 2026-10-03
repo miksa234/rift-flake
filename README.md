@@ -3,7 +3,7 @@
 Nix package and nix-darwin module for
 [Rift](https://github.com/acsandmann/rift).
 
-The default package follows the latest stable Rift release (currently v0.5.9).
+The default package follows the latest stable Rift release (currently v0.6.4).
 Also available is `riftUnstable` package follows the upstream default branch.
 
 ## Usage
