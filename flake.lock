@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1790769526,
-        "narHash": "sha256-5AIVFLRcx8YAwbFTVPTs7YhwJH7JyHfAQsvXmpovcXI=",
+        "lastModified": 1791487292,
+        "narHash": "sha256-tqM7xDEsaeK1p6VvRygeZ9LkQRpUUkbRT02BHv6hnTM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c9fe7d12cd78d1adcd12dd15e24432dde5b155a0",
+        "rev": "8edc0c72e3a38faf5434e40d1f19431125fe4b30",
         "type": "github"
       },
       "original": {
@@ -19,16 +19,16 @@
     "rift-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790985804,
-        "narHash": "sha256-zvypEnCl9bsVf5EdoCbjHCmESwsek56kS4ESBS3sFXU=",
+        "lastModified": 1791345091,
+        "narHash": "sha256-MuXUyQ0b4v66yPwrfefCHaYGL7zo9hg1QJq4ve0kFCQ=",
         "owner": "acsandmann",
         "repo": "rift",
-        "rev": "41f1c051f21f4bb69b3faf506c5bdc8f92100f62",
+        "rev": "cf84836a43e7b0ca9d8fb48dd92c353212ef4b87",
         "type": "github"
       },
       "original": {
         "owner": "acsandmann",
-        "ref": "v0.6.4",
+        "ref": "v0.6.9",
         "repo": "rift",
         "type": "github"
       }
@@ -36,11 +36,11 @@
     "rift-src-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1790985804,
-        "narHash": "sha256-zvypEnCl9bsVf5EdoCbjHCmESwsek56kS4ESBS3sFXU=",
+        "lastModified": 1791950054,
+        "narHash": "sha256-Hjr+0vNAplG1yMcxSKSKTN1wO5YOEJov4CvHCzuioRY=",
         "owner": "acsandmann",
         "repo": "rift",
-        "rev": "41f1c051f21f4bb69b3faf506c5bdc8f92100f62",
+        "rev": "f8f80e0e86272cd753141d0f28c36d3656bb3078",
         "type": "github"
       },
       "original": {
